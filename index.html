@@ -3,39 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Electric Field Simulator</title>
+  <title>AP E&M - EF and EP Lines Simulator</title>
+  <link rel="icon" type="image/png" href="./favicon.png" sizes="32x32" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Sidebar -->
-
   <div id="sidebar">
     <h2>Particles</h2>
     <div class="particle proton" draggable="true">+ Positive Charge</div>
     <div class="particle electron" draggable="true">− Negative Charge</div>
     <button id="clearBtn">Clear All</button>
     <button id="screenshotBtn">Download Screenshot</button>
-
-
-
     <h2>Toggles and Inputs</h2>
-
     <label class="toggle">
       <input type="checkbox" id="toggleField" checked />
       <span>Electric Field</span>
     </label>
-
     <label class="toggle">
       <input type="checkbox" id="toggleEquip" checked />
       <span>Equipotential Lines</span>
     </label>
-
     <label class="toggle">
       <input type="checkbox" id="togglePotential">
       <span>Voltage Heatmap</span>
     </label>
-
-
     <div class="control">
       <label for="pxPerMeterInput">Pixels per meter:</label>
       <input
@@ -52,19 +43,16 @@
         Type a number from 1–500
       </p>
     </div>
-
     <div class="control">
       <label for="equipDensity">Density: <span id="equipDensityVal">4</span></label>
       <input type="range" id="equipDensity" min="1" max="10" step="1" value="4" />
     </div>
-
     <h2>Instructions</h2>
     <p class="hint">
       Drag and drop particles from the sidebar.<br />
       Right-click on a particle to delete it.<br />
       Double-click on a particle to modify its charge.
     </p>
-
     <div class="legend">
       <div class="legend-item">
         <span class="legend-line field-line"></span>
@@ -78,39 +66,26 @@
         <span class="legend-line zero-line"></span>
         = Zero Voltage Line
       </div>
+      <div class="credits">
+        Designed by <b>Aarush Dutta</b><br>
+        <i>AP E&amp;M — November 17, 2025</i>
+      </div>
+      <div class="repo-link">
+        <a href="https://github.com/aarushdutta2010/test" target="_blank">View on GitHub ↗</a>
+      </div>
     </div>
-
-
   </div>
-
-
-
-  <!-- Main canvas -->
   <canvas id="fieldCanvas"></canvas>
-
-
   <div id="hud">
-    <div id="hudCharges"></div>          <!-- NEW: list of q1, q2, ... -->
+    <div id="hudCharges"></div>
     <div id="hudDist">Distance: —</div>
     <div id="hudE">|E|: —</div>
     <div id="hudV">V: —</div>
   </div>
-
-
-
-
-
-
-
-
-
-
-    <!-- Edit Charge Modal -->
     <div id="chargeModal" class="modal hidden" aria-hidden="true">
     <div class="panel">
         <button id="closeChargeModal" class="close">×</button>
         <h3 id="chargeTitle">Edit charge (q?)</h3>
-
         <div class="row">
         <label for="mantissaInput">Mantissa:</label>
         <input type="number" id="mantissaInput" step="any" placeholder="e.g., 1.0" />
@@ -119,19 +94,14 @@
         <label for="exponentInput">Exponent:</label>
         <input type="number" id="exponentInput" step="1" placeholder="e.g., -6" />
         </div>
-
         <p id="chargeError" class="error" style="display:none;">Enter mantissa &gt; 0 and exponent between −12 and 12.</p>
-
         <div class="actions">
         <button id="saveChargeBtn" class="primary">Save</button>
         </div>
-
         <p class="hint">Total charge = mantissa × 10^exponent Coulombs</p>
     </div>
     </div>
-
   <div id="chargeTooltip" class="hidden"></div>
-
   <script src="script.js"></script>
 </body>
 </html>
