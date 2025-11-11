@@ -9,6 +9,17 @@
 </head>
 <body>
   <div id="sidebar">
+      <div class="credits">
+        Designed by <b>Aarush Dutta</b><br>
+        <i>
+          AP Physics C: E&amp;M<br>
+          November 17, 2025
+        </i>
+      </div>
+      <div class="repo-link">
+        <a href="https://github.com/aarushdutta2010/efepsim" target="_blank">View on GitHub ↗</a>
+      </div>
+      <hr class="section-divider" />
     <h2>Particles</h2>
     <div class="particle proton" draggable="true">+ Positive Charge</div>
     <div class="particle electron" draggable="true">− Negative Charge</div>
@@ -44,7 +55,11 @@
       </p>
     </div>
     <div class="control">
-      <label for="equipDensity">Density: <span id="equipDensityVal">4</span></label>
+      <label for="fieldDensity">Electric Field Line Density: <span id="fieldDensityVal">4</span></label>
+      <input type="range" id="fieldDensity" min="1" max="10" step="1" value="4" />
+    </div>
+    <div class="control">
+      <label for="equipDensity">Equipotential Line Density: <span id="equipDensityVal">4</span></label>
       <input type="range" id="equipDensity" min="1" max="10" step="1" value="4" />
     </div>
     <h2>Instructions</h2>
@@ -65,13 +80,6 @@
       <div class="legend-item">
         <span class="legend-line zero-line"></span>
         = Zero Voltage Line
-      </div>
-      <div class="credits">
-        Designed by <b>Aarush Dutta</b><br>
-        <i>AP E&amp;M — November 17, 2025</i>
-      </div>
-      <div class="repo-link">
-        <a href="https://github.com/aarushdutta2010/efepsim" target="_blank">View on GitHub ↗</a>
       </div>
     </div>
   </div>

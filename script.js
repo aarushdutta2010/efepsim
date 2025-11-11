@@ -12,6 +12,7 @@ let showField = true;
 let showEquip = true;
 let showPotentialMap = false;
 let equipDensity = 4;
+let fieldDensity = 4;
 let pixelsPerMeter = 100;
 const defaultChargeMagnitudeC = 1e-6;
 let nextChargeId = 1;
@@ -250,7 +251,7 @@ function traceFieldLine(x, y, step = 8, maxSteps = 2000) {
 }
 function drawFieldLines() {
   if (charges.length === 0) return;
-  const numSeeds = 16;
+  const numSeeds = Math.max(6, Math.round(6 + fieldDensity * 2.5));
   const lineColor = "rgba(255, 180, 80, 0.7)";
   for (const c of charges) {
     for (let i = 0; i < numSeeds; i++) {
@@ -365,7 +366,7 @@ function drawPotentialMap() {
         const dy = (y - c.y) / pixelsPerMeter;
         const r = Math.sqrt(dx * dx + dy * dy);
         if (r < 1e-6) continue;
-        const qC = c.q * (c.magnitudeC ?? chargeMagnitudeC);
+        const qC = c.q * (c.magnitudeC ?? defaultchargeMagnitudeC);
         V += (k * qC) / r;
       }
       const color = voltageToColor(V, maxV, alpha);
@@ -467,6 +468,17 @@ if (pxInput) {
   pxInput.addEventListener("input", validateAndApplyScale);
   pxInput.addEventListener("change", validateAndApplyScale);
   pxInput.addEventListener("blur", validateAndApplyScale);
+}
+const fieldSlider = document.getElementById("fieldDensity");
+const fieldValue  = document.getElementById("fieldDensityVal");
+if (fieldSlider && fieldValue) {
+  fieldValue.textContent = String(fieldDensity);
+  fieldSlider.value = String(fieldDensity);
+  fieldSlider.addEventListener("input", (e) => {
+    fieldDensity = Number(e.target.value);
+    fieldValue.textContent = String(fieldDensity);
+    drawScene();
+  });
 }
 const densSlider = document.getElementById("equipDensity");
 const densValue  = document.getElementById("equipDensityVal");
